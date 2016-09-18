@@ -1,0 +1,16 @@
+{
+  "title": "Collapse for Wikipedia",
+  "name": "collapse",
+  "version": "0.0.1",
+  "description": "An add-on to collapse sections in Wikipedia",
+  "main": "index.js",
+  "author": "Finnegan Miles-Hussey",
+  "engines": {
+    "firefox": ">=38.0a1",
+    "fennec": ">=38.0a1"
+  },
+  "license": "MIT",
+  "keywords": [
+    "jetpack"
+  ]
+}
