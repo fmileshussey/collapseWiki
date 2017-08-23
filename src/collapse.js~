@@ -1,3 +1,5 @@
+createCollapsables();
 function createCollapsables(){
-    alert("fair dinkum");
+    window.alert("fair dinkum");
 }
+
