@@ -2,7 +2,7 @@
 	collapse.js - firefox addon for collapsing wikipedia
 	article sections.
 	@author fmileshussey
-	@version 0.1.0
+	@version 0.1.1
 */
 
 window.onload = createCollapsables;
@@ -13,6 +13,9 @@ window.onload = createCollapsables;
 */
 function createCollapsables(){
     var headers = document.querySelectorAll("h2");
+	var insLoc = document.getElementById("bodyContent");
+	var finalItem = document.getElementById("catlinks");
+	
 	var arr = [];
 	
 	Array.from(headers).forEach(function(h2, index) {
@@ -28,11 +31,13 @@ function createCollapsables(){
 	});
 
 	arr.forEach(function(html, index) {
-		document.body.appendChild(headers[index])
-		var div = document.createElement("div");
-		document.body.appendChild(div);
-		html.forEach(function(el) {
-			div.appendChild(el)
-		})
+		if(headers[index].innerHTML != "Contents"){
+			insLoc.insertBefore(headers[index], finalItem);
+			var div = document.createElement("div");
+			insLoc.insertBefore(div, finalItem);
+			html.forEach(function(el) {
+				div.appendChild(el)
+			})
+		}
 	});
 }
