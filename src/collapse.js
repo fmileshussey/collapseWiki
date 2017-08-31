@@ -2,19 +2,20 @@
 	collapse.js - firefox addon for collapsing wikipedia
 	article sections.
 	@author fmileshussey
-	@version 0.2.1
+	@version 0.2.2
 */
 
 window.onload = createCollapsables;
 
 function hideDiv(index){
 	var d = document.getElementById(index + "-content");
+	var heading = document.getElementById(index + "-link");
 	if(d.style.display == "none"){
 		d.style.display = "block";
-		document.getElementById(index + "-link").innerHTML = "hide";
+		heading.innerHTML = "hide";
 	}else{
 		d.style.display = "none";
-		document.getElementById(index + "-link").innerHTML = "show";
+		heading.innerHTML = "show";
 	}
 }
 
@@ -44,13 +45,16 @@ function createCollapsables(){
 	array.forEach(function(html, index) {
 		if(headers[index].innerHTML != "Contents" && headers[index].innerHTML != "Navigation menu"){
 			var hideLink = document.createElement("span");
-			hideLink.classList.add("mw-editsection");
+			hideLink.style.marginRight = "5px";
+			hideLink.style.fontSize = "small";
+			hideLink.style.fontFamily = "sans-serif";
 			hideLink.innerHTML = "[<a id='" + index + "-link' onclick='hideDiv(" + index + ")'>hide</a>]";
-			headers[index].appendChild(hideLink);
+			
+			headers[index].insertBefore(hideLink, headers[index].firstChild);
 			insLoc.insertBefore(headers[index], finalItem);
 			var div = document.createElement("div");
 			div.id = index + "-content";
-			//console.log(headers[index].nextElementSibling.tagName);
+			
 			insLoc.insertBefore(div, finalItem);
 			html.forEach(function(el) {
 				div.appendChild(el)
