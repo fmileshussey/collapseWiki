@@ -12,7 +12,7 @@
 	"content_scripts": [
     {
       "matches": ["*://*.wikipedia.org/wiki/*"],
-      "js": ["collapse.js"]
+      "js": ["src/collapse.js"]
     }
   ]
 }

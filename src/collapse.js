@@ -44,7 +44,7 @@ function createCollapsables(){
 	array.forEach(function(html, index) {
 		
 		if(headers[index].innerHTML != "Contents" && headers[index].innerHTML != "Navigation menu"){
-			//parentElement.id == mw-navigation
+			
 			//inserting link
 			var hideLink = document.createElement("span");
 			hideLink.style.marginRight = "5px";
