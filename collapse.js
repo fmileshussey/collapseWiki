@@ -2,10 +2,10 @@
 	collapse.js - firefox addon for collapsing wikipedia
 	article sections.
 	@author fmileshussey
-	@version 0.2.2
+	@version 0.3.0
 */
 
-window.onload = createCollapsables;
+window.onload = createCollapsables();
 
 function hideDiv(index){
 	var d = document.getElementById(index + "-content");
@@ -27,7 +27,6 @@ function createCollapsables(){
     var headers = document.querySelectorAll("h2");
 	var insLoc = document.getElementById("bodyContent");
 	var finalItem = document.getElementById("catlinks");
-	
 	var array = [];
 	
 	Array.from(headers).forEach(function(h2, index) {
@@ -41,16 +40,19 @@ function createCollapsables(){
 			if(current == null) break;
 		}
 	});
-
+	
 	array.forEach(function(html, index) {
+		
 		if(headers[index].innerHTML != "Contents" && headers[index].innerHTML != "Navigation menu"){
+			
+			//inserting link
 			var hideLink = document.createElement("span");
 			hideLink.style.marginRight = "5px";
 			hideLink.style.fontSize = "small";
 			hideLink.style.fontFamily = "sans-serif";
-			hideLink.innerHTML = "[<a id='" + index + "-link' onclick='hideDiv(" + index + ")'>hide</a>]";
-			
+			hideLink.innerHTML = "[<a id='" + index + "-link'>hide</a>]";
 			headers[index].insertBefore(hideLink, headers[index].firstChild);
+			
 			insLoc.insertBefore(headers[index], finalItem);
 			var div = document.createElement("div");
 			div.id = index + "-content";
@@ -59,6 +61,8 @@ function createCollapsables(){
 			html.forEach(function(el) {
 				div.appendChild(el)
 			})
+			document.getElementById(index + "-link").addEventListener("click", function(){hideDiv(index)});
 		}
 	});
+	
 }

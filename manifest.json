@@ -1,0 +1,18 @@
+{
+	"manifest_version": 2,
+	"name": "Collapse for Wikipedia",
+	"version": "0.3.0",
+	
+	"description": "An add-on to collapse sections in Wikipedia",
+  
+	"icons": {
+    "48": "icons/border-48.png"
+  },
+  
+	"content_scripts": [
+    {
+      "matches": ["*://*.wikipedia.org/wiki/*"],
+      "js": ["collapse.js"]
+    }
+  ]
+}
