@@ -3,7 +3,7 @@
    @desc firefox addon for collapsing wikipedia
    article sections.
    @author fmileshussey
-   @version 0.3.0
+   @version 0.9.0
 */
 
 window.onload = createCollapsables();
@@ -55,7 +55,7 @@ function createCollapsables(){
     /*Add links, create and add elements to individual divs*/
     array.forEach(function(html, index) {
 	
-	if(headers[index].innerHTML != "Contents"){
+	if(headers[index].parentElement.className != "toctitle"){
 	    if(headers[index].parentElement.id != "mw-navigation"){
 		//headers[index].innerHTML != "Navigation menu"
 		//parentElement.id == mw-navigation
