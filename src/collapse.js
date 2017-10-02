@@ -31,6 +31,7 @@ function hideDiv(index){
 /**
    @desc createCollapsable - encloses tags between h2's in a div
    that are used to collapse sections.
+   done with help from: https://stackoverflow.com/a/39554032/6726577
 */
 function createCollapsables(){
     var headers = document.querySelectorAll("h2");
@@ -57,8 +58,6 @@ function createCollapsables(){
 	
 	if(headers[index].parentElement.className != "toctitle"){
 	    if(headers[index].parentElement.id != "mw-navigation"){
-		//headers[index].innerHTML != "Navigation menu"
-		//parentElement.id == mw-navigation
 		
 		//inserting link
 		var hideLink = document.createElement("span");
