@@ -64,7 +64,17 @@ function createCollapsables(){
 		hideLink.style.marginRight = "5px";
 		hideLink.style.fontSize = "small";
 		hideLink.style.fontFamily = "sans-serif";
-		hideLink.innerHTML = "[<a id='" + index + "-link'>hide</a>]";
+		
+		//this code was provided with help from https://www.reddit.com/r/firefox/comments/73qjmf/how_do_i_go_about_sanitizing_a_variable_to_insert/dnupd46/
+		hideLink.textContent = ""; // This will clear the contents of the node, so that the following doesn’t just keep adding more and more [hide]s.
+		hideLink.appendChild(document.createTextNode("["));
+		hideLink.appendChild((() => { // This is an anonymous function, so that the `a` variable doesn’t conflict with something.
+			let a = document.createElement("a");
+			a.appendChild(document.createTextNode("hide"));
+			a.setAttribute("id", `${index}-link`); // This will ensure that the `index` value is sanitized properly.
+			return a;
+		})());
+		hideLink.appendChild(document.createTextNode("]"));
 		headers[index].insertBefore(hideLink, headers[index].firstChild);
 		
 		insLoc.insertBefore(headers[index], finalItem);
