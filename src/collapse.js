@@ -44,14 +44,15 @@ function createCollapsables(){
     Array.from(headers).forEach(function(h2, index) {
 	array[index] = [];
 	var current = h2.nextElementSibling;
-	
-	while (current.tagName !== "H2") {
-	    array[index].push(current);
-	    var next = current.nextElementSibling;
-	    current = next;
-	    if(current == null) break;
-	}
-    });
+	if(current != null){
+		while (current.tagName !== "H2") {
+			array[index].push(current);
+			var next = current.nextElementSibling;
+			current = next;
+			if(current == null) break;
+		}
+    }
+	});
 
     /*Add links, create and add elements to individual divs*/
     array.forEach(function(html, index) {
